@@ -1,7 +1,8 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.android.calc.FinancialFragment">
 
 <LinearLayout
@@ -25,15 +26,55 @@
         android:layout_weight="1"
         android:hint="请输入金额"/>
 </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize"
+            android:layout_weight="4"
+            android:text="预期利率"/>
 
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:textSize="@dimen/textsize"
+            android:layout_weight="1"
+            android:hint="请输入预期利率"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize"
+            android:layout_weight="4"
+            android:text="年数"/>
 
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textSize="@dimen/textsize"
+            android:layout_weight="1"
+            android:hint="请输入年数"/>
+    </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:layout_gravity="bottom"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="100dp"
         >
         <Button
@@ -54,4 +95,4 @@
             />
     </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>
