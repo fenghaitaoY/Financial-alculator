@@ -14,6 +14,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements FinancialFragment
 
     @BindView(R.id.container)
     ConstraintLayout container;
+
+    List<Fragment> fragments = new ArrayList<>();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -82,6 +87,10 @@ public class MainActivity extends AppCompatActivity implements FinancialFragment
             }
         });
 
+        fragments.add(FinancialFragment.newInstance("1","2"));
+        fragments.add(FinancialFragTwo.newInstance("1","2"));
+        fragments.add(FinancialFragThre.newInstance("1","2"));
+
 
     }
 
@@ -99,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements FinancialFragment
 
         @Override
         public Fragment getItem(int position) {
-            return FinancialFragment.newInstance("1111","2222");
+            return fragments.get(position);
         }
 
         @Override

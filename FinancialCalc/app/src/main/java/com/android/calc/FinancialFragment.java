@@ -4,15 +4,31 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.DownloadListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.text.DecimalFormat;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnTextChanged;
+import butterknife.Unbinder;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FinancialFragment.OnFragmentInteractionListener} interface
+ * {@link OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link FinancialFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -22,8 +38,28 @@ public class FinancialFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    @BindView(R.id.finan_total)
+    TextView finanTotal;
+    @BindView(R.id.input_money)
+    EditText inputMoney;
+    @BindView(R.id.input_rate)
+    EditText inputRate;
+    @BindView(R.id.input_years)
+    EditText inputYears;
+    @BindView(R.id.calc_sum)
+    Button calcSum;
+    @BindView(R.id.calc_reset)
+    Button calcReset;
+
+    Unbinder unbinder;
+
     private String mParam1;
     private String mParam2;
+    private double principal;
+    private double rate;
+    private double years;
+    private double total;
+    private DecimalFormat decimalFormat;
 
     private OnFragmentInteractionListener mListener;
 
@@ -58,13 +94,19 @@ public class FinancialFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        Log.d("FHT", "OnCreate");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_financial, container, false);
+        Log.d("FHT", "OnCreateView");
+        View view = inflater.inflate(R.layout.fragment_financial, container, false);
+        unbinder = ButterKnife.bind(this, view);
+        
+        return view;
     }
 
     public void onButtonPressed(Uri uri) {
@@ -76,6 +118,7 @@ public class FinancialFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        Log.d("FHT", "OnAttach");
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
@@ -87,9 +130,61 @@ public class FinancialFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        Log.d("FHT", "OnDetach");
         mListener = null;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+        Log.d("FHT", "OnDestroyView");
+    }
+
+
+
+
+
+
+    @OnClick({R.id.calc_sum, R.id.calc_reset})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.calc_sum:
+                total = calc_total();
+                if(total == 0){
+                    finanTotal.setText("0");
+                }else {
+                    DecimalFormat df = new DecimalFormat(".##");
+
+                    String total_format = df.format(total);
+                    finanTotal.setText(total_format);
+                }
+                break;
+            case R.id.calc_reset:
+                inputMoney.setText("");
+                inputYears.setText("");
+                inputRate.setText("");
+                finanTotal.setText("0");
+
+                break;
+        }
+    }
+
+    private double calc_total(){
+        Log.d("fht","money ="+ inputMoney.getText().toString() +" years ="+inputYears.getText().toString()+" rate ="+inputRate.getText().toString());
+        if(TextUtils.isEmpty(inputMoney.getText().toString())
+                || TextUtils.isEmpty(inputRate.getText().toString())
+                || TextUtils.isEmpty(inputYears.getText().toString())){
+            return 0;
+        }
+
+        principal = Double.valueOf(inputMoney.getText().toString());
+        years = Double.valueOf(inputYears.getText().toString());
+        rate = Double.valueOf(inputRate.getText().toString());
+
+        total = principal*Math.pow((1+rate/100),years);
+        return total;
+    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
