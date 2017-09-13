@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
             android:padding="5dp"
-            android:text="盈利"/>
+            android:text="本息合计"/>
 
 
         <TextView

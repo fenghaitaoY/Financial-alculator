@@ -105,7 +105,7 @@ public class FinancialFragment extends Fragment {
         Log.d("FHT", "OnCreateView");
         View view = inflater.inflate(R.layout.fragment_financial, container, false);
         unbinder = ButterKnife.bind(this, view);
-        
+
         return view;
     }
 
