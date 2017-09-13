@@ -110,31 +110,8 @@
             android:hint="请输入年数"/>
     </LinearLayout>
 
-
-
-    <LinearLayout
+    <include layout="@layout/bt_reset_calc_layout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="100dp"
-        >
-        <Button
-            android:id="@+id/calc_sum"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/calc_sum"
-            />
-
-
-        <Button
-            android:id="@+id/calc_reset"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="重置"
-            />
-    </LinearLayout>
-
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"/>
 </LinearLayout>

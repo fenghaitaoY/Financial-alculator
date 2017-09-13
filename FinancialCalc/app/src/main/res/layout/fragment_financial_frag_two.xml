@@ -1,13 +1,117 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context="com.android.calc.FinancialFragTwo">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="fragment two" />
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/colorAccent"
+        >
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:padding="5dp"
+            android:text="本息合计"/>
+
+
+        <TextView
+            android:id="@+id/total_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#7f6f6b"
+            android:layout_gravity="center|bottom"
+            android:textSize="25sp"
+            android:layout_marginBottom="5dp"
+            android:text="0"/>
+
+    </android.support.v7.widget.CardView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:clickable="false"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize"
+            android:layout_weight="4"
+            android:text="每年投入本金"/>
+
+        <EditText
+            android:id="@+id/input_every_year"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:textSize="@dimen/textsize"
+            android:layout_weight="1"
+            android:imeOptions="actionDone"
+            android:hint="请输入金额"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize"
+            android:layout_weight="4"
+            android:text="预期利率"/>
+
+        <EditText
+            android:id="@+id/input_expect_rate"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:textSize="@dimen/textsize"
+            android:layout_weight="0.8"
+            android:hint="请输入利率"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize"
+            android:layout_weight="4"
+            android:text="存放时间(年)"/>
+
+        <EditText
+            android:id="@+id/input_save_year"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:textSize="@dimen/textsize"
+            android:layout_weight="1"
+            android:hint="请输入时间"/>
+    </LinearLayout>
+
+    <include layout="@layout/bt_reset_calc_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"/>
+</LinearLayout>

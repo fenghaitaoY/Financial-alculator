@@ -46,9 +46,9 @@ public class FinancialFragment extends Fragment {
     EditText inputRate;
     @BindView(R.id.input_years)
     EditText inputYears;
-    @BindView(R.id.calc_sum)
+    @BindView(R.id.calc_start)
     Button calcSum;
-    @BindView(R.id.calc_reset)
+    @BindView(R.id.calc_reset_thr)
     Button calcReset;
 
     Unbinder unbinder;
@@ -146,10 +146,10 @@ public class FinancialFragment extends Fragment {
 
 
 
-    @OnClick({R.id.calc_sum, R.id.calc_reset})
+    @OnClick({R.id.calc_start, R.id.calc_reset_thr})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.calc_sum:
+            case R.id.calc_start:
                 total = calc_total();
                 if(total == 0){
                     finanTotal.setText("0");
@@ -160,7 +160,7 @@ public class FinancialFragment extends Fragment {
                     finanTotal.setText(total_format);
                 }
                 break;
-            case R.id.calc_reset:
+            case R.id.calc_reset_thr:
                 inputMoney.setText("");
                 inputYears.setText("");
                 inputRate.setText("");
