@@ -49,9 +49,6 @@ public class FinancialFragThre extends Fragment {
     @BindView(R.id.input_return_rate)
     EditText inputReturnRate;
 
-    @BindView(R.id.input_capital)
-    EditText inputCapital;
-
     @BindView(R.id.calc_reset_thr)
     Button calcResetThr;
 
@@ -141,7 +138,6 @@ public class FinancialFragThre extends Fragment {
                 showDataDialog();
                 break;
             case R.id.calc_reset_thr:
-                inputCapital.setText("");
                 inputReturnRate.setText("");
                 btDataStart.setText(mSimpleDate.format(mCalendar.getTime()));
                 btDataEnd.setText(mSimpleDate.format(mCalendar.getTime()));
@@ -164,14 +160,13 @@ public class FinancialFragThre extends Fragment {
         double years,totalRate, principal,total;
 
         if(endTime <= startTime) return 0;
-        if(TextUtils.isEmpty(inputCapital.getEditableText().toString())
-                || TextUtils.isEmpty(inputReturnRate.getText().toString())){
+        if(TextUtils.isEmpty(inputReturnRate.getText().toString())){
             return 0;
         }
 
         years = (endTime-startTime)/1000.00/60.00/60.00/24.00/365;
         totalRate = Double.valueOf(inputReturnRate.getText().toString());
-        principal = Double.valueOf(inputCapital.getText().toString());
+        principal = 100;
         total = principal*totalRate/100+principal;
         Log.d("fht","years = "+years+" , totalRate ="+totalRate+" , principal ="+principal+", total="+total);
         return 100*(Math.pow(total/principal,1.0/years)-1);
