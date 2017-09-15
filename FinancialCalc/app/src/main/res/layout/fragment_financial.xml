@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
             android:padding="5dp"
-            android:text="本息合计"/>
+            android:text="@string/sum_principal"/>
 
 
         <TextView
@@ -33,7 +33,7 @@
             android:layout_gravity="center|bottom"
             android:textSize="25sp"
             android:layout_marginBottom="5dp"
-            android:text="0"/>
+            android:text="@string/zero"/>
 
     </android.support.v7.widget.CardView>
 
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/textsize"
         android:layout_weight="4"
-        android:text="存款金额"/>
+        android:text="@string/amount_deposited"/>
 
     <EditText
         android:id="@+id/input_money"
@@ -63,7 +63,7 @@
         android:textSize="@dimen/textsize"
         android:layout_weight="1"
         android:imeOptions="actionDone"
-        android:hint="请输入金额"/>
+        android:hint="@string/input_money"/>
 </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/textsize"
             android:layout_weight="4"
-            android:text="预期利率"/>
+            android:text="@string/expected_rate"/>
 
         <EditText
             android:id="@+id/input_rate"
@@ -85,7 +85,7 @@
             android:inputType="date"
             android:textSize="@dimen/textsize"
             android:layout_weight="1"
-            android:hint="请输入预期利率"/>
+            android:hint="@string/input_expected_rate"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/textsize"
             android:layout_weight="4"
-            android:text="年数"/>
+            android:text="@string/years"/>
 
         <EditText
             android:id="@+id/input_years"
@@ -107,7 +107,7 @@
             android:inputType="date"
             android:textSize="@dimen/textsize"
             android:layout_weight="0.8"
-            android:hint="请输入年数"/>
+            android:hint="@string/input_years"/>
     </LinearLayout>
 
     <include layout="@layout/bt_reset_calc_layout"

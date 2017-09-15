@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
             android:padding="5dp"
-            android:text="本息合计"/>
+            android:text="@string/sum_principal"/>
 
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_gravity="center|bottom"
             android:textSize="25sp"
             android:layout_marginBottom="5dp"
-            android:text="0"/>
+            android:text="@string/zero"/>
 
     </android.support.v7.widget.CardView>
 
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/textsize"
             android:layout_weight="4"
-            android:text="每年投入本金"/>
+            android:text="@string/every_year_money"/>
 
         <EditText
             android:id="@+id/input_every_year"
@@ -61,7 +61,7 @@
             android:textSize="@dimen/textsize"
             android:layout_weight="1"
             android:imeOptions="actionDone"
-            android:hint="请输入金额"/>
+            android:hint="@string/input_money"/>
     </LinearLayout>
 
     <LinearLayout
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/textsize"
             android:layout_weight="4"
-            android:text="预期利率"/>
+            android:text="@string/expected_rate"/>
 
         <EditText
             android:id="@+id/input_expect_rate"
@@ -84,7 +84,7 @@
             android:inputType="date"
             android:textSize="@dimen/textsize"
             android:layout_weight="0.8"
-            android:hint="请输入利率"/>
+            android:hint="@string/input_expected_rate"/>
     </LinearLayout>
 
     <LinearLayout
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/textsize"
             android:layout_weight="4"
-            android:text="存放时间(年)"/>
+            android:text="@string/storage_time"/>
 
         <EditText
             android:id="@+id/input_save_year"
@@ -107,7 +107,7 @@
             android:inputType="date"
             android:textSize="@dimen/textsize"
             android:layout_weight="1"
-            android:hint="请输入时间"/>
+            android:hint="@string/input_time"/>
     </LinearLayout>
 
     <include layout="@layout/bt_reset_calc_layout"

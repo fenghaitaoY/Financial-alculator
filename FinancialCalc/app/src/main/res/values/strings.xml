@@ -1,11 +1,27 @@
 <resources>
     <string name="app_name">FinancialCalc</string>
-    <string name="title_home">FHT</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="calc_sum">Calc</string>
+    <string name="title_home">short term</string>
+    <string name="title_dashboard">long term</string>
+    <string name="title_notifications">annual yield</string>
+    <string name="sum_principal">sum principal</string>
+    <string name="zero">0.0</string>
+    <string name="amount_deposited">amount_deposited</string>
+    <string name="input_money">input money</string>
+    <string name="expected_rate">expected rate</string>
+    <string name="input_expected_rate">input expected rate</string>
+    <string name="years">years</string>
+    <string name="input_years">input years</string>
+    <string name="button_clear">Clear</string>
+    <string name="every_year_money">every year money</string>
+    <string name="storage_time">storage time(year)</string>
+    <string name="input_time">input time</string>
+    <string name="start_time">start time</string>
+    <string name="end_time">end time</string>
+    <string name="total_earnings">total earnings</string>
+    <string name="input_total_earnings">input total earnings</string>
+    <string name="principal">princial(Yuan)</string>
+    <string name="recombination_rate">recombination rate</string>
+    <string name="percent_zero">0.0%</string>
 </resources>

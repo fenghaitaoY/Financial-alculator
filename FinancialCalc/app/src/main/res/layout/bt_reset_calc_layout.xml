@@ -13,7 +13,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#00ff00"
-            android:text="清除"
+            android:text="@string/button_clear"
             />
 
 
@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#ff00ff"
-            android:text="计算"
+            android:text="@string/calc_sum"
             />
     </LinearLayout>
 </LinearLayout>
