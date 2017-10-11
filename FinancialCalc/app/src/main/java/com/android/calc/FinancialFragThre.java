@@ -2,7 +2,13 @@ package com.android.calc;
 
 
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -12,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -55,6 +62,28 @@ public class FinancialFragThre extends Fragment {
     @BindView(R.id.calc_start)
     Button calcStart;
 
+    @BindView(R.id.select_rate_left)
+    Button selectRateLeft;
+
+    @BindView(R.id.select_rate_right)
+    Button selectRateRight;
+
+    @BindView(R.id.input_capital)
+    EditText inputCapital;
+    @BindView(R.id.input_total_principal)
+    EditText inputTotalPrincipal;
+
+    @BindView(R.id.layout_total_earnings)
+    LinearLayout totalEarnLayout;
+
+    @BindView(R.id.layout_principal)
+    LinearLayout principalLayout;
+
+    @BindView(R.id.layout_total_principal)
+    LinearLayout totalPrincipalLayout;
+
+
+
     Unbinder unbinder;
 
     long startTime, endTime;
@@ -67,8 +96,7 @@ public class FinancialFragThre extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-
+    private boolean isChecked=false;
 
     public FinancialFragThre() {
         // Required empty public constructor
@@ -116,6 +144,22 @@ public class FinancialFragThre extends Fragment {
         btDataEnd.setText(mSimpleDate.format(mCalendar.getTime()));
         startTime= mCalendar.getTime().getTime();
         endTime = mCalendar.getTime().getTime();
+
+        isChecked = getActivity().getSharedPreferences("financial", Context.MODE_PRIVATE).getBoolean("select_check",false);
+        Log.i("fht", isChecked+"");
+        if(isChecked) {
+            selectRateLeft.setBackgroundResource(R.drawable.rate_left_drawable_press);
+            selectRateRight.setBackgroundResource(R.drawable.rate_right_drawable);
+            totalEarnLayout.setVisibility(View.VISIBLE);
+            totalPrincipalLayout.setVisibility(View.GONE);
+            principalLayout.setVisibility(View.GONE);
+        }else{
+            selectRateLeft.setBackgroundResource(R.drawable.rate_left_drawable);
+            selectRateRight.setBackgroundResource(R.drawable.rate_right_drawable_press);
+            totalEarnLayout.setVisibility(View.GONE);
+            totalPrincipalLayout.setVisibility(View.VISIBLE);
+            principalLayout.setVisibility(View.VISIBLE);
+        }
         return view;
     }
 
@@ -125,9 +169,9 @@ public class FinancialFragThre extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.bt_data_start, R.id.bt_data_end, R.id.calc_reset_thr, R.id.calc_start})
+    @OnClick({R.id.bt_data_start, R.id.bt_data_end, R.id.calc_reset_thr, R.id.calc_start,R.id.select_rate_right,R.id.select_rate_left})
     public void onViewClicked(View view) {
-
+        Log.i("fht", "onView click isChecked ="+isChecked);
         switch (view.getId()) {
             case R.id.bt_data_start:
                 bt_start = true;
@@ -142,6 +186,8 @@ public class FinancialFragThre extends Fragment {
                 btDataStart.setText(mSimpleDate.format(mCalendar.getTime()));
                 btDataEnd.setText(mSimpleDate.format(mCalendar.getTime()));
                 yearrateTv.setText("0.0%");
+                inputCapital.setText("");
+                inputTotalPrincipal.setText("");
                 break;
             case R.id.calc_start:
                 rate = calc_complex_rate();
@@ -153,6 +199,28 @@ public class FinancialFragThre extends Fragment {
                     yearrateTv.setText(rates+"%");
                 }
                 break;
+            case R.id.select_rate_left:
+                SharedPreferences sp  = getActivity().getSharedPreferences("financial", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor= sp.edit();
+                editor.putBoolean("select_check",true);
+                editor.commit();
+                selectRateLeft.setBackgroundResource(R.drawable.rate_left_drawable_press);
+                selectRateRight.setBackgroundResource(R.drawable.rate_right_drawable);
+                totalEarnLayout.setVisibility(View.VISIBLE);
+                totalPrincipalLayout.setVisibility(View.GONE);
+                principalLayout.setVisibility(View.GONE);
+                break;
+            case R.id.select_rate_right:
+                SharedPreferences sharedPreferences= getActivity().getSharedPreferences("financial", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorRight= sharedPreferences.edit();
+                editorRight.putBoolean("select_check",false);
+                editorRight.commit();
+                selectRateLeft.setBackgroundResource(R.drawable.rate_left_drawable);
+                selectRateRight.setBackgroundResource(R.drawable.rate_right_drawable_press);
+                totalEarnLayout.setVisibility(View.GONE);
+                totalPrincipalLayout.setVisibility(View.VISIBLE);
+                principalLayout.setVisibility(View.VISIBLE);
+                break;
         }
     }
 
@@ -160,15 +228,23 @@ public class FinancialFragThre extends Fragment {
         double years,totalRate, principal,total;
 
         if(endTime <= startTime) return 0;
-        if(TextUtils.isEmpty(inputReturnRate.getText().toString())){
-            return 0;
+        isChecked = getActivity().getSharedPreferences("financial", Context.MODE_PRIVATE).getBoolean("select_check",false);
+        if(isChecked) {
+            if (TextUtils.isEmpty(inputReturnRate.getText().toString())) {
+                return 0;
+            }
+            totalRate = Double.valueOf(inputReturnRate.getText().toString());
+            principal = 100;
+            total = principal*totalRate/100+principal;
+        }else{
+            if(TextUtils.isEmpty(inputCapital.getText().toString()) || TextUtils.isEmpty(inputTotalPrincipal.getText().toString())){
+                return 0;
+            }
+            principal = Double.valueOf(inputCapital.getText().toString());
+            total = Double.valueOf(inputTotalPrincipal.getText().toString());
         }
-
         years = (endTime-startTime)/1000.00/60.00/60.00/24.00/365;
-        totalRate = Double.valueOf(inputReturnRate.getText().toString());
-        principal = 100;
-        total = principal*totalRate/100+principal;
-        Log.d("fht","years = "+years+" , totalRate ="+totalRate+" , principal ="+principal+", total="+total);
+        Log.d("fht","years = "+years+" , principal ="+principal+", total="+total);
         return 100*(Math.pow(total/principal,1.0/years)-1);
 
     }

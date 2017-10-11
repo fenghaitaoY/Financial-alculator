@@ -6,6 +6,30 @@
     android:orientation="vertical"
     tools:context="com.android.calc.FinancialFragThre">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/select_rate_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rate_left_drawable_press"
+            android:text="年化１"/>
+
+
+        <Button
+            android:id="@+id/select_rate_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rate_right_drawable"
+            android:text="年化２"/>
+    </LinearLayout>
+
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,6 +85,7 @@
 
 
     <LinearLayout
+        android:id="@+id/layout_total_earnings"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_marginLeft="20dp"
@@ -83,11 +108,13 @@
             android:imeOptions="actionDone"
             android:hint="@string/input_total_earnings"/>
     </LinearLayout>
-    <!--LinearLayout
+    <LinearLayout
+        android:id="@+id/layout_principal"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:visibility="gone"
         android:layout_height="50dp">
         <TextView
             android:layout_width="wrap_content"
@@ -104,7 +131,33 @@
             android:textSize="@dimen/textsize"
             android:layout_weight="0.8"
             android:hint="@string/input_money"/>
-    </LinearLayout-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_total_principal"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:visibility="gone"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize"
+            android:layout_weight="4"
+            android:text="@string/total_principal"/>
+
+        <EditText
+            android:id="@+id/input_total_principal"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:textSize="@dimen/textsize"
+            android:layout_weight="0.8"
+            android:hint="@string/input_money"/>
+    </LinearLayout>
+
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"

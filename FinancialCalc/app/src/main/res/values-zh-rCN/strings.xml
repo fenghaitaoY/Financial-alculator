@@ -22,6 +22,7 @@
     <string name="total_earnings">总收益率</string>
     <string name="input_total_earnings">请输入总收益率</string>
     <string name="principal">本金(元)</string>
+    <string name="total_principal">收入后金额</string>
     <string name="recombination_rate">复合年化利率</string>
     <string name="percent_zero">0.0%</string>
 
