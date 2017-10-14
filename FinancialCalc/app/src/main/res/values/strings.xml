@@ -24,4 +24,5 @@
     <string name="principal">princial(Yuan)</string>
     <string name="recombination_rate">recombination rate</string>
     <string name="percent_zero">0.0%</string>
+    <string name="total_principal">princial_total</string>
 </resources>
